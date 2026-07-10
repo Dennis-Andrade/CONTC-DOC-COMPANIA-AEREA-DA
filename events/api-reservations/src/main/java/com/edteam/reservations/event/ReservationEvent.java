@@ -1,5 +1,7 @@
 package com.edteam.reservations.event;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -12,7 +14,9 @@ public final class ReservationEvent {
     private final Double price;
     private final List<String> emails;
 
-    public ReservationEvent(String id, String passengerName, Double price, List<String> emails) {
+    @JsonCreator
+    public ReservationEvent(@JsonProperty("id") String id, @JsonProperty("passengerName") String passengerName,
+            @JsonProperty("price") Double price, @JsonProperty("emails") List<String> emails) {
         this.id = id;
         this.passengerName = passengerName;
         this.price = price;
