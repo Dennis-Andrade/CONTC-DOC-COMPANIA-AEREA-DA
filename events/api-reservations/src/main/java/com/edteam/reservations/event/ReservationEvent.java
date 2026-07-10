@@ -1,6 +1,9 @@
 package com.edteam.reservations.event;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 public final class ReservationEvent {
 
@@ -13,7 +16,7 @@ public final class ReservationEvent {
         this.id = id;
         this.passengerName = passengerName;
         this.price = price;
-        this.emails = emails;
+        this.emails = new ArrayList<>(Objects.requireNonNullElse(emails, Collections.emptyList()));
     }
 
     public String getId() {
@@ -29,6 +32,6 @@ public final class ReservationEvent {
     }
 
     public List<String> getEmails() {
-        return emails;
+        return Collections.unmodifiableList(new ArrayList<>(emails));
     }
 }
