@@ -18,6 +18,7 @@ public final class ReservationEventStream {
 
     public static Flux<ReservationEvent> processedReservations() {
         return sampleReservations().filter(ReservationFilters.VALID_RESERVATION)
-                .doOnNext(ReservationFilters.PRINT_PROCESSED_EVENT);
+                .doOnNext(ReservationFilters.PRINT_PROCESSED_EVENT).defaultIfEmpty(
+                        new ReservationEvent("EVT-DEFAULT", "Reserva generica", 1.0, List.of("reservas@mail.com")));
     }
 }
