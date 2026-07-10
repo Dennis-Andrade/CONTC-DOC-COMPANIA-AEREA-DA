@@ -15,4 +15,9 @@ public final class ReservationEventStream {
                 new ReservationEvent("EVT-004", "Carlos Ruiz", 95.90, List.of("carlos.ruiz@mail.com")),
                 new ReservationEvent("EVT-005", "Sofia Diaz", 320.00, List.of()));
     }
+
+    public static Flux<ReservationEvent> processedReservations() {
+        return sampleReservations().filter(ReservationFilters.VALID_RESERVATION)
+                .doOnNext(ReservationFilters.PRINT_PROCESSED_EVENT);
+    }
 }
